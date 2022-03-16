@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Contify.Application.DTO;
+using Contify.Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -17,10 +19,12 @@ namespace Contify.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ITesteAppService _testeAppService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ITesteAppService testeAppService)
         {
             _logger = logger;
+            _testeAppService = testeAppService;
         }
 
         [HttpGet]
@@ -36,11 +40,13 @@ namespace Contify.Controllers
             .ToArray();
         }
 
-        [HttpGet]
-        [Route("testando")]
-        public IActionResult GetTeste()
+        [HttpPut]
+        [Route("teste")]
+        public IActionResult GetTeste(ObjetoTesteDto objetoDto)
         {
-            return Ok("Testando Retorno novo");
+            var result = _testeAppService.Teste(objetoDto);
+
+            return Ok(result);
         }
     }
 }

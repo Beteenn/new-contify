@@ -1,3 +1,7 @@
+using Contify.Application.Interfaces;
+using Contify.Application.Services;
+using Contify.Domain.Interfaces;
+using Contify.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +30,8 @@ namespace Contify
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ITesteAppService, TesteAppService>();
+            services.AddScoped<ITesteService, TesteService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
