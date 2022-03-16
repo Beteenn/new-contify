@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Contify.Application.SeedWork;
 using Contify.Application.ViewModels;
 using Contify.Domain.Entities;
+using Contify.Domain.SeedWork;
 
 namespace Contify.Application.Mapper
 {
@@ -8,6 +10,11 @@ namespace Contify.Application.Mapper
     {
         public DomainToViewModelProfile()
         {
+            CreateMap(typeof(DomainResult<>), typeof(Result<>));
+
+            CreateMap<DomainResult, Result>()
+                .ReverseMap();
+
             CreateMap<ObjetoTeste, ObjetoTesteViewModel>()
                 .ReverseMap();
         }

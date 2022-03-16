@@ -1,4 +1,5 @@
-﻿using Contify.Application.DTO;
+﻿using Contify.Api.Controllers;
+using Contify.Application.DTO;
 using Contify.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,7 +12,7 @@ namespace Contify.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : BaseApiController
     {
         private static readonly string[] Summaries = new[]
         {
@@ -46,7 +47,7 @@ namespace Contify.Controllers
         {
             var result = _testeAppService.Teste(objetoDto);
 
-            return Ok(result);
+            return ResultRequest(result);
         }
     }
 }

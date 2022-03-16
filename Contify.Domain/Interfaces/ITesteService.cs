@@ -1,14 +1,10 @@
 ﻿using Contify.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Contify.Domain.SeedWork;
 
 namespace Contify.Domain.Interfaces
 {
     public interface ITesteService
     {
-        ObjetoTeste AtualizarObjeto(ObjetoTeste objeto); 
+        DomainResult<ObjetoTeste> AtualizarObjeto(ObjetoTeste objeto);
     }
 }

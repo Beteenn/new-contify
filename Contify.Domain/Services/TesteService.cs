@@ -1,5 +1,6 @@
 ﻿using Contify.Domain.Entities;
 using Contify.Domain.Interfaces;
+using Contify.Domain.SeedWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace Contify.Domain.Services
 {
     public class TesteService : ITesteService
     {
-        public ObjetoTeste AtualizarObjeto(ObjetoTeste objeto)
+        public DomainResult<ObjetoTeste> AtualizarObjeto(ObjetoTeste objeto)
         {
             objeto.Atualizar();
 
-            return objeto;
+            return new DomainResult<ObjetoTeste>(objeto);
         }
     }
 }
