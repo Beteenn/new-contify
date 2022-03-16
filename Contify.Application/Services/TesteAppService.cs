@@ -1,20 +1,16 @@
-﻿using Contify.Application.DTO;
+﻿using AutoMapper;
+using Contify.Application.DTO;
 using Contify.Application.Interfaces;
 using Contify.Application.ViewModels;
 using Contify.Domain.Entities;
 using Contify.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Contify.Application.Services
 {
-    public class TesteAppService : ITesteAppService
+    public class TesteAppService : BaseAppService, ITesteAppService
     {
         private readonly ITesteService _testeService;
-        public TesteAppService(ITesteService testeService)
+        public TesteAppService(ITesteService testeService, IMapper mapper) : base(mapper)
         {
             _testeService = testeService;
         }
@@ -25,7 +21,7 @@ namespace Contify.Application.Services
 
             var objetoAtualizado = _testeService.AtualizarObjeto(objeto);
 
-            return new ObjetoTesteViewModel() { Id = objetoAtualizado.Id, Nome = objetoAtualizado.Nome };
+            return Mapper.Map<ObjetoTesteViewModel>(objetoAtualizado);
         }
     }
 }
