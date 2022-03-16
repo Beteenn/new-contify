@@ -35,5 +35,12 @@ namespace Contify.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet]
+        [Route("testando")]
+        public IActionResult GetTeste()
+        {
+            return Ok("Testando Retorno novo");
+        }
     }
 }
