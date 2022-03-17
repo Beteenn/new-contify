@@ -5,6 +5,8 @@ using Contify.Application.SeedWork;
 using Contify.Application.ViewModels;
 using Contify.Domain.Entities;
 using Contify.Domain.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Contify.Application.Services
 {
@@ -16,11 +18,46 @@ namespace Contify.Application.Services
             _testeService = testeService;
         }
 
-        public Result<ObjetoTesteViewModel> Teste(ObjetoTesteDto objetoDto)
+        public async Task<Result<ObjetoTesteViewModel>> AddObject(ObjetoTesteDto objetoDto)
         {
             var objeto = new ObjetoTeste(objetoDto.Id, objetoDto.Nome);
 
-            var objetoAtualizado = _testeService.AtualizarObjeto(objeto);
+            var objetoAtualizado = await _testeService.AddObject(objeto);
+
+            return Mapper.Map<Result<ObjetoTesteViewModel>>(objetoAtualizado);
+        }
+
+        public async Task<Result> DeleteById(int id)
+        {
+            var objeto = await _testeService.GetById(id);
+
+            if (objeto.Data == null)
+                return new Result();
+
+            await _testeService.DeleteObject(objeto.Data);
+
+            return new Result();
+        }
+
+        public async Task<Result<ObjetoTesteViewModel>> GetById(int id)
+        {
+            var objectTeste = await _testeService.GetById(id);
+
+            return Mapper.Map<Result<ObjetoTesteViewModel>>(objectTeste);
+        }
+
+        public async Task<Result<IEnumerable<ObjetoTesteViewModel>>> ListObjects()
+        {
+            var listObjectTeste = await _testeService.ListObjects();
+
+            return Mapper.Map<Result<IEnumerable<ObjetoTesteViewModel>>>(listObjectTeste);
+        }
+
+        public async Task<Result<ObjetoTesteViewModel>> UpdateObject(ObjetoTesteDto objetoDto)
+        {
+            var objeto = new ObjetoTeste(objetoDto.Id, objetoDto.Nome);
+
+            var objetoAtualizado = await _testeService.UpdateObject(objeto);
 
             return Mapper.Map<Result<ObjetoTesteViewModel>>(objetoAtualizado);
         }

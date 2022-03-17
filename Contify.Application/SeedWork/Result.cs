@@ -9,7 +9,6 @@ namespace Contify.Application.SeedWork
 
     public sealed class Result<T> : BaseResult<T> where T : class
     {
-        public Result() : base() { }
         public Result(T data) : base(data) { }
     }
 }

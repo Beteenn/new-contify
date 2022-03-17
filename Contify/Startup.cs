@@ -1,12 +1,16 @@
 using Contify.Application.Interfaces;
 using Contify.Application.Mapper;
 using Contify.Application.Services;
+using Contify.Data.Configuration;
+using Contify.Data.Repositories;
 using Contify.Domain.Interfaces;
+using Contify.Domain.InterfacesRepository;
 using Contify.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,6 +35,12 @@ namespace Contify
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ContifyContext>(
+                opt => opt.UseSqlServer(Configuration.GetConnectionString("ContifyDb"))
+            );
+
+            services.AddScoped<IObjetoTesteRepository, ObjetoTesteRepository>();
+
             var mapperConfig = new AutoMapperConfig();
             services.AddSingleton(mapperConfig.Mapper);
 

@@ -19,10 +19,10 @@ namespace Contify.Domain.Entities
             Nome = nome;
         }
 
-        public void Atualizar()
+        public void Atualizar(long id, string nome)
         {
-            Id = 15;
-            Nome = $"{Nome} Atualizado";
+            Id = id;
+            Nome = nome;
         }
     }
 }
