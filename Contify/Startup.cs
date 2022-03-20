@@ -35,8 +35,9 @@ namespace Contify
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ContifyContext>(
-                opt => opt.UseSqlServer(Configuration.GetConnectionString("ContifyDb"))
+            services.AddEntityFrameworkSqlServer()
+                .AddDbContext<ContifyContext>(opt =>
+                    opt.UseSqlServer(Configuration.GetConnectionString("ContifyDb"))
             );
 
             services.AddScoped<IObjetoTesteRepository, ObjetoTesteRepository>();
