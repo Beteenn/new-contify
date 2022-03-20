@@ -44,6 +44,10 @@ namespace Contify
                 //options.Password.RequireLowercase = true;
                 //options.Password.RequiredUniqueChars = 1;
             })
+                .AddRoles<Role>()
+                .AddRoleManager<RoleManager<Role>>()
+                .AddRoleValidator<RoleValidator<Role>>()
+                .AddSignInManager<SignInManager<User>>()
                 .AddEntityFrameworkStores<ContifyContext>()
                 .AddDefaultTokenProviders();
 
