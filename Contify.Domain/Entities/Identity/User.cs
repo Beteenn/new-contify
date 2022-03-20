@@ -10,5 +10,13 @@ namespace Contify.Domain.Entities.Identity
         public List<UserRole> UserRoles { get; private set; }
 
         public User() { }
+
+        public User(string email, string firstName, string lastName, string userName)
+        {
+            Email = email;
+            FirstName = firstName;
+            LastName = lastName;
+            UserName = userName;
+        }
     }
 }
