@@ -1,14 +1,68 @@
-﻿using Contify.Domain.SeedWork;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Contify.Application.SeedWork
 {
-    public sealed class Result : BaseResult
+    public class Result
     {
-        public Result() : base() { }
+        public ICollection<string> ErrorMessages { get; private set; }
+
+        [JsonIgnore]
+        public bool Success => ErrorMessages.Count == 0;
+
+        public Result()
+        {
+            ErrorMessages = new List<string>();
+        }
+
+        public virtual Result AddErrorMessage(string message)
+        {
+            ErrorMessages.Add(message);
+            return this;
+        }
+
+        public virtual Result AddErrorMessage(IEnumerable<string> message)
+        {
+            foreach (var item in message)
+            {
+                ErrorMessages.Add(item);
+            }
+
+            return this;
+        }
     }
 
-    public sealed class Result<T> : BaseResult<T> where T : class
+    public sealed class Result<T> : Result where T : class
     {
-        public Result(T data) : base(data) { }
+        [JsonIgnore]
+        public T Data { get; private set; }
+
+
+        public Result(T data)
+        {
+            Data = data;
+        }
+
+        public override Result<T> AddErrorMessage(string message)
+        {
+            ErrorMessages.Add(message);
+            return this;
+        }
+
+        public override Result<T> AddErrorMessage(IEnumerable<string> message)
+        {
+            foreach (var item in message)
+            {
+                ErrorMessages.Add(item);
+            }
+
+            return this;
+        }
+
+        public Result<T> AddData(T data)
+        {
+            Data = data;
+            return this;
+        }
     }
 }
