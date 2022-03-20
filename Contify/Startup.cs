@@ -3,23 +3,18 @@ using Contify.Application.Mapper;
 using Contify.Application.Services;
 using Contify.Data.Configuration;
 using Contify.Data.Repositories;
+using Contify.Domain.Entities.Identity;
 using Contify.Domain.Interfaces;
 using Contify.Domain.InterfacesRepository;
 using Contify.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Contify
 {
@@ -40,13 +35,28 @@ namespace Contify
                     opt.UseSqlServer(Configuration.GetConnectionString("ContifyDb"))
             );
 
+            services.AddIdentity<User, Role>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                //options.Password.RequiredLength = 8;
+                //options.Password.RequireDigit = true;
+                //options.Password.RequireUppercase = true;
+                //options.Password.RequireLowercase = true;
+                //options.Password.RequiredUniqueChars = 1;
+            })
+                .AddEntityFrameworkStores<ContifyContext>()
+                .AddDefaultTokenProviders();
+
             services.AddScoped<IObjetoTesteRepository, ObjetoTesteRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             var mapperConfig = new AutoMapperConfig();
             services.AddSingleton(mapperConfig.Mapper);
 
             services.AddScoped<ITesteAppService, TesteAppService>();
             services.AddScoped<ITesteService, TesteService>();
+            services.AddTransient<IUserAppService, UserAppService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
