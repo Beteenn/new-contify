@@ -2,6 +2,7 @@
 using Contify.Application.SeedWork;
 using Contify.Application.ViewModels;
 using Contify.Domain.Entities;
+using Contify.Domain.Entities.Identity;
 using Contify.Domain.SeedWork;
 
 namespace Contify.Application.Mapper
@@ -16,6 +17,9 @@ namespace Contify.Application.Mapper
                 .ReverseMap();
 
             CreateMap<ObjetoTeste, ObjetoTesteViewModel>()
+                .ReverseMap();
+
+            CreateMap<User, UserViewModel>()
                 .ReverseMap();
         }
 
