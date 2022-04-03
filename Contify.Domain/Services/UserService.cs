@@ -30,5 +30,23 @@ namespace Contify.Domain.Services
 
             return new DomainResult<User>(user);
         }
+
+        public async Task<DomainResult<User>> GetByLogin(string login)
+        {
+            var user = await _userManager.FindByNameAsync(login);
+
+            if (user == null) return new DomainResult<User>().AddErrorMessage("User not found.");
+
+            return new DomainResult<User>(user);
+        }
+
+        public async Task<DomainResult<User>> ValidatePassword(User user, string password)
+        {
+            var signInResult = await _signInManager.CheckPasswordSignInAsync(user, password, false);
+
+            if (!signInResult.Succeeded) return new DomainResult<User>().AddErrorMessage("User or password invalid.");
+
+            return new DomainResult<User>(user);
+        }
     }
 }

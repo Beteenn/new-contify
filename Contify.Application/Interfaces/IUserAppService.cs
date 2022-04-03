@@ -8,5 +8,6 @@ namespace Contify.Application.Interfaces
     public interface IUserAppService
     {
         Task<Result<UserViewModel>> CreateUser(UserDto userDto);
+        Task<Result<TokenViewModel>> Login(LoginDto loginDto);
     }
 }

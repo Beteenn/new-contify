@@ -7,6 +7,7 @@ using Contify.Domain.Entities.Identity;
 using Contify.Domain.Interfaces;
 using Contify.Domain.InterfacesRepository;
 using Contify.Domain.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -14,7 +15,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace Contify
 {
@@ -35,7 +38,7 @@ namespace Contify
                     opt.UseSqlServer(Configuration.GetConnectionString("ContifyDb"))
             );
 
-            services.AddIdentity<User, Role>(options =>
+            services.AddIdentityCore<User>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 //options.Password.RequiredLength = 8;
@@ -51,6 +54,18 @@ namespace Contify
                 .AddEntityFrameworkStores<ContifyContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+
             services.AddScoped<IObjetoTesteRepository, ObjetoTesteRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
@@ -59,6 +74,7 @@ namespace Contify
 
             services.AddScoped<ITesteAppService, TesteAppService>();
             services.AddScoped<ITesteService, TesteService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddTransient<IUserAppService, UserAppService>();
             services.AddTransient<IUserService, UserService>();
 

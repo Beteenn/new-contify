@@ -37,6 +37,7 @@ namespace Contify.Application.SeedWork
         [JsonIgnore]
         public T Data { get; private set; }
 
+        public Result() { }
 
         public Result(T data)
         {

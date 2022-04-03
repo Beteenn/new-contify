@@ -18,18 +18,22 @@ namespace Contify.Api.Controllers
             _userAppService = userAppService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Test()
-        {
-            return Ok("Ok UserController");
-        }
-
         [HttpPost]
         [ProducesResponseType(typeof(UserViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateUser(UserDto userDto)
         {
             var result = await _userAppService.CreateUser(userDto);
+
+            return ResultRequest(result);
+        }
+
+        [HttpPost("Login")]
+        [ProducesResponseType(typeof(TokenViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Login(LoginDto loginDto)
+        {
+            var result = await _userAppService.Login(loginDto);
 
             return ResultRequest(result);
         }
