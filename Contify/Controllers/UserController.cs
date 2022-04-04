@@ -1,6 +1,7 @@
 ﻿using Contify.Application.DTO;
 using Contify.Application.Interfaces;
 using Contify.Application.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -16,6 +17,15 @@ namespace Contify.Api.Controllers
         public UserController(IUserAppService userAppService)
         {
             _userAppService = userAppService;
+        }
+
+        [Authorize]
+        [HttpGet("Teste-autenticado")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult Test()
+        {
+            return Ok();
         }
 
         [HttpPost]
