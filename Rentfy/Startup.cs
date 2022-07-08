@@ -35,7 +35,7 @@ namespace Rentfy
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEntityFrameworkSqlServer()
-                .AddDbContext<ContifyContext>(opt =>
+                .AddDbContext<RentfyContext>(opt =>
                     opt.UseSqlServer(Configuration.GetConnectionString("RentfyDb"))
             );
 
@@ -52,7 +52,7 @@ namespace Rentfy
                 .AddRoleManager<RoleManager<Role>>()
                 .AddRoleValidator<RoleValidator<Role>>()
                 .AddSignInManager<SignInManager<User>>()
-                .AddEntityFrameworkStores<ContifyContext>()
+                .AddEntityFrameworkStores<RentfyContext>()
                 .AddDefaultTokenProviders();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

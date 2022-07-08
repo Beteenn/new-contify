@@ -2,18 +2,14 @@
 using Rentfy.Domain.InterfacesRepository;
 using Rentfy.Domain.SeedWork;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rentfy.Data.Repositories
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        protected readonly ContifyContext _context;
+        protected readonly RentfyContext _context;
         
-        public BaseRepository(ContifyContext context)
+        public BaseRepository(RentfyContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }

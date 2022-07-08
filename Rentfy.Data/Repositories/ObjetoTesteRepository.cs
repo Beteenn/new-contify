@@ -12,7 +12,7 @@ namespace Rentfy.Data.Repositories
 {
     public class ObjetoTesteRepository : BaseRepository<ObjetoTeste>, IObjetoTesteRepository
     {
-        public ObjetoTesteRepository(ContifyContext context) : base(context) { }
+        public ObjetoTesteRepository(RentfyContext context) : base(context) { }
 
         public async Task AddObject(ObjetoTeste objeto)
         {
