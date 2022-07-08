@@ -17,9 +17,10 @@ namespace Rentfy.Domain.Entities
             Name = name;
         }
 
-        public APerson(string name)
+        public APerson(string name, string email)
         {
             Name = name;
+            Email = new EmailValueObject(email);
         }
 
         public void UpdateName(string newName) => Name = newName;

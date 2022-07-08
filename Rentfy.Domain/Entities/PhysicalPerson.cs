@@ -18,9 +18,11 @@ namespace Rentfy.Domain.Entities
             LastName = lastName;
         }
 
-        public PhysicalPerson(string name, string lastName) : base(name)
+        public PhysicalPerson(string name, string email, string lastName, DateTime birthDate, string cpf) : base(name, email)
         {
             LastName = lastName;
+            BirthDate = birthDate;
+            CPF = new CPFValueObject(cpf);
         }
 
         public void UpdateLastName(string newLastName) => LastName = newLastName;
