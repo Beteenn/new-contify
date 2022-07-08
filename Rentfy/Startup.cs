@@ -67,17 +67,21 @@ namespace Rentfy
                     };
                 });
 
-            services.AddScoped<IObjetoTesteRepository, ObjetoTesteRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-
             var mapperConfig = new AutoMapperConfig();
             services.AddSingleton(mapperConfig.Mapper);
 
             services.AddScoped<ITesteAppService, TesteAppService>();
+            services.AddTransient<IUserAppService, UserAppService>();
+            services.AddTransient<IPhysicalPersonAppService, PhysicalPersonAppService>();
+
             services.AddScoped<ITesteService, TesteService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
-            services.AddTransient<IUserAppService, UserAppService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IPhysicalPersonService, PhysicalPersonService>();
+
+            services.AddScoped<IObjetoTesteRepository, ObjetoTesteRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPhysicalPersonRepository, PhysicalPersonRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
