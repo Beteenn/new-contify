@@ -21,6 +21,12 @@ namespace Rentfy.Application.Mapper
 
             CreateMap<User, UserViewModel>()
                 .ReverseMap();
+
+            CreateMap<APerson, APersonViewModel>()
+                .ReverseMap();
+
+            CreateMap<PhysicalPerson, PhysicalPersonViewModel>()
+                .ReverseMap();
         }
 
     }
