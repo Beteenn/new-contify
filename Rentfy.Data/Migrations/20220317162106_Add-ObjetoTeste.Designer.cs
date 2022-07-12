@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Rentfy.Data.Migrations
 {
-    [DbContext(typeof(ContifyContext))]
+    [DbContext(typeof(RentfyContext))]
     [Migration("20220317162106_Add-ObjetoTeste")]
     partial class AddObjetoTeste
     {

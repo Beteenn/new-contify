@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Rentfy.Data.Migrations
 {
-    [DbContext(typeof(ContifyContext))]
+    [DbContext(typeof(RentfyContext))]
     [Migration("20220320191900_Add-Identity")]
     partial class AddIdentity
     {
