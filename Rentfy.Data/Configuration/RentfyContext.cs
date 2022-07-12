@@ -19,6 +19,7 @@ namespace Rentfy.Data.Configuration
         public DbSet<ObjetoTeste> ObjetoTestes { get; set; }
         public DbSet<APerson> APeople { get; set; }
         public DbSet<PhysicalPerson> PhysicalPeople { get; set; }
+        public DbSet<LegalPerson> LegalPeople { get; set; }
 
 
         #endregion
@@ -42,6 +43,7 @@ namespace Rentfy.Data.Configuration
             #region Person
             modelBuilder.ApplyConfiguration(new APersonMapping());
             modelBuilder.ApplyConfiguration(new PhysicalPersonMapping());
+            modelBuilder.ApplyConfiguration(new LegalPersonMapping());
             #endregion
 
             base.OnModelCreating(modelBuilder);

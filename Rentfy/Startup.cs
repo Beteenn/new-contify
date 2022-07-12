@@ -73,15 +73,18 @@ namespace Rentfy
             services.AddScoped<ITesteAppService, TesteAppService>();
             services.AddTransient<IUserAppService, UserAppService>();
             services.AddTransient<IPhysicalPersonAppService, PhysicalPersonAppService>();
+            services.AddTransient<ILegalPersonAppService, LegalPersonAppService>();
 
             services.AddScoped<ITesteService, TesteService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IPhysicalPersonService, PhysicalPersonService>();
+            services.AddTransient<ILegalPersonService, LegalPersonService>();
 
             services.AddScoped<IObjetoTesteRepository, ObjetoTesteRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPhysicalPersonRepository, PhysicalPersonRepository>();
+            services.AddScoped<ILegalPersonRepository, LegalPersonRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
