@@ -1,6 +1,6 @@
 ﻿namespace Rentfy.Application.ViewModels
 {
-    public  class APersonViewModel
+    public abstract class APersonViewModel
     {
         public long Id { get; set; }
         public string Name { get; set; }

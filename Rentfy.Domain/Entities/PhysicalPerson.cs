@@ -13,9 +13,11 @@ namespace Rentfy.Domain.Entities
 
         public PhysicalPerson() { }
 
-        public PhysicalPerson(long id, string name, string lastName) : base(id, name) 
+        public PhysicalPerson(long id, string name, string lastName, DateTime birthDate, string cpf) : base(id, name) 
         {
             LastName = lastName;
+            BirthDate = birthDate;
+            CPF = new CPFValueObject(cpf);
         }
 
         public PhysicalPerson(string name, string email, string lastName, DateTime birthDate, string cpf) : base(name, email)
@@ -29,5 +31,13 @@ namespace Rentfy.Domain.Entities
 
         public void UpdateDocumento(CPFValueObject newDocument) => CPF = newDocument;
 
+        public void UpdateBasicInfo(PhysicalPerson personUpdate)
+        {
+            UpdateEmail(personUpdate.Email.Address);
+            UpdateName(personUpdate.Name);
+            LastName = personUpdate.LastName;
+            BirthDate = personUpdate.BirthDate;
+            CPF = new CPFValueObject(personUpdate.CPF.Number);
+        }
     }
 }

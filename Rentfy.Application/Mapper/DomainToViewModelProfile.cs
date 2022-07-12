@@ -23,9 +23,11 @@ namespace Rentfy.Application.Mapper
                 .ReverseMap();
 
             CreateMap<APerson, APersonViewModel>()
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.Address))
                 .ReverseMap();
 
             CreateMap<PhysicalPerson, PhysicalPersonViewModel>()
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.Address))
                 .ReverseMap();
         }
 
