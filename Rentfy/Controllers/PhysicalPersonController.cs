@@ -22,6 +22,7 @@ namespace Rentfy.Api.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(PhysicalPersonViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("{id}")]
         public async Task<IActionResult> GetPhysicalPerson(long id)
         {
             var result = await _physicalPersonAppService.GetPhysicalPerson(id);

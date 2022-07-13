@@ -33,6 +33,9 @@ namespace Rentfy.Application.Mapper
             CreateMap<LegalPerson, LegalPersonViewModel>()
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.Address))
                 .ReverseMap();
+
+            CreateMap<ProductCategory, ProductCategoryViewModel>()
+                .ReverseMap();
         }
 
     }

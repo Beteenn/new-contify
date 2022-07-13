@@ -20,6 +20,7 @@ namespace Rentfy.Data.Configuration
         public DbSet<APerson> APeople { get; set; }
         public DbSet<PhysicalPerson> PhysicalPeople { get; set; }
         public DbSet<LegalPerson> LegalPeople { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
 
 
         #endregion
@@ -45,6 +46,8 @@ namespace Rentfy.Data.Configuration
             modelBuilder.ApplyConfiguration(new PhysicalPersonMapping());
             modelBuilder.ApplyConfiguration(new LegalPersonMapping());
             #endregion
+
+            modelBuilder.ApplyConfiguration(new ProductCategoryMapping());
 
             base.OnModelCreating(modelBuilder);
         }
