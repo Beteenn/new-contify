@@ -6,6 +6,6 @@ namespace Rentfy.Data.Repositories
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        public UserRepository(ContifyContext context) : base(context) { }
+        public UserRepository(RentfyContext context) : base(context) { }
     }
 }

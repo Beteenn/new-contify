@@ -12,7 +12,7 @@ namespace Rentfy.Api.Controllers
                 return BadRequest(result);
 
             if (result.Data == null)
-                return Ok();
+                return NotFound();
 
             return Ok(result.Data);
         }

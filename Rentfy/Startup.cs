@@ -35,7 +35,7 @@ namespace Rentfy
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEntityFrameworkSqlServer()
-                .AddDbContext<ContifyContext>(opt =>
+                .AddDbContext<RentfyContext>(opt =>
                     opt.UseSqlServer(Configuration.GetConnectionString("RentfyDb"))
             );
 
@@ -52,7 +52,7 @@ namespace Rentfy
                 .AddRoleManager<RoleManager<Role>>()
                 .AddRoleValidator<RoleValidator<Role>>()
                 .AddSignInManager<SignInManager<User>>()
-                .AddEntityFrameworkStores<ContifyContext>()
+                .AddEntityFrameworkStores<RentfyContext>()
                 .AddDefaultTokenProviders();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -67,17 +67,27 @@ namespace Rentfy
                     };
                 });
 
-            services.AddScoped<IObjetoTesteRepository, ObjetoTesteRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-
             var mapperConfig = new AutoMapperConfig();
             services.AddSingleton(mapperConfig.Mapper);
 
             services.AddScoped<ITesteAppService, TesteAppService>();
+            services.AddTransient<IUserAppService, UserAppService>();
+            services.AddTransient<IPhysicalPersonAppService, PhysicalPersonAppService>();
+            services.AddTransient<ILegalPersonAppService, LegalPersonAppService>();
+            services.AddTransient<IProductCategoryAppService, ProductCategoryAppService>();
+
             services.AddScoped<ITesteService, TesteService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
-            services.AddTransient<IUserAppService, UserAppService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IPhysicalPersonService, PhysicalPersonService>();
+            services.AddTransient<ILegalPersonService, LegalPersonService>();
+            services.AddTransient<IProductCategoryService, ProductCategoryService>();
+
+            services.AddScoped<IObjetoTesteRepository, ObjetoTesteRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPhysicalPersonRepository, PhysicalPersonRepository>();
+            services.AddScoped<ILegalPersonRepository, LegalPersonRepository>();
+            services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
