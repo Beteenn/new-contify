@@ -6,9 +6,6 @@ using Rentfy.Application.ViewModels;
 using Rentfy.Domain.Entities;
 using Rentfy.Domain.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Rentfy.Application.Services
