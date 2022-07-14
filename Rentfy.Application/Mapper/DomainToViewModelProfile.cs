@@ -39,6 +39,9 @@ namespace Rentfy.Application.Mapper
 
             CreateMap<Product, ProductViewModel>()
                 .ReverseMap();
+
+            CreateMap<Store, StoreViewModel>()
+                .ReverseMap();
         }
 
     }

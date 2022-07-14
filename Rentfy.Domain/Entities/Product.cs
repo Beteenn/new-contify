@@ -1,6 +1,8 @@
-﻿namespace Rentfy.Domain.Entities
+﻿using Rentfy.Domain.SeedWork;
+
+namespace Rentfy.Domain.Entities
 {
-    public class Product
+    public class Product : IItemCollection<Product>
     {
         public long Id { get; private set; }
         public string Name { get; private set; }
@@ -11,6 +13,8 @@
         public double HourValue { get; private set; }
         public long CategoryId { get; private set; }
         public ProductCategory Category { get; private set; }
+        public Store Store { get; private set; }
+        public long StoreId { get; private set; }
 
         public Product() { }
 
@@ -24,13 +28,14 @@
             CategoryId = categoryId;
         }
 
-        public Product(string name, string description, int amount, double hourValue, long categoryId)
+        public Product(string name, string description, int amount, double hourValue, long categoryId, long storeId)
         {
             Name = name;
             Description = description;
             Amount = amount;
             HourValue = hourValue;
             CategoryId = categoryId;
+            StoreId = storeId;
         }
 
         public Product(long id, string name, string description, int amount, int rentedAmount, double hourValue, long categoryId)
@@ -53,6 +58,19 @@
             Amount = productUpdate.Amount;
             HourValue = productUpdate.HourValue;
             CategoryId = productUpdate.CategoryId;
+            StoreId = productUpdate.StoreId;
         }
+
+        public void UpdateItem(Product item)
+        {
+            Name = item.Name;
+            Description = item.Description;
+            Amount = item.Amount;
+            HourValue = item.HourValue;
+            CategoryId = item.CategoryId;
+        }
+
+        public bool Equals(Product other) => Id == other.Id;
+
     }
 }

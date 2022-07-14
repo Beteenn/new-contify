@@ -76,6 +76,7 @@ namespace Rentfy
             services.AddTransient<ILegalPersonAppService, LegalPersonAppService>();
             services.AddTransient<IProductCategoryAppService, ProductCategoryAppService>();
             services.AddTransient<IProductAppService, ProductAppService>();
+            services.AddTransient<IStoreAppService, StoreAppService>();
 
             services.AddScoped<ITesteService, TesteService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
@@ -84,6 +85,7 @@ namespace Rentfy
             services.AddTransient<ILegalPersonService, LegalPersonService>();
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IStoreService, StoreService>();
 
             services.AddScoped<IObjetoTesteRepository, ObjetoTesteRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -91,6 +93,7 @@ namespace Rentfy
             services.AddScoped<ILegalPersonRepository, LegalPersonRepository>();
             services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IStoreRepository, StoreRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -132,6 +135,7 @@ namespace Rentfy
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
+            app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Rentify v1"));
 

@@ -8,5 +8,6 @@
         public int Amount { get; set; }
         public double HourValue { get; set; }
         public long CategoryId { get; set; }
+        public long StoreId { get; set; }
     }
 }
