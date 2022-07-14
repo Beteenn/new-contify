@@ -10,5 +10,6 @@
         public int FreeAmount { get; set; }
         public double HourValue { get; set; }
         public ProductCategoryViewModel Category { get; set; }
+        public StoreViewModel Store { get; set; }
     }
 }

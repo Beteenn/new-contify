@@ -28,7 +28,8 @@ namespace Rentfy.Application.Services
 
         public async Task<Result<ProductViewModel>> CreateProduct(ProductDto productDto)
         {
-            var productUpdate = new Product(productDto.Name, productDto.Description, productDto.Amount, productDto.HourValue, productDto.CategoryId);
+            var productUpdate = new Product(productDto.Name, productDto.Description, productDto.Amount, productDto.HourValue,
+                productDto.CategoryId, productDto.StoreId);
 
             var personResult = await _productService.Create(productUpdate);
 
@@ -37,7 +38,8 @@ namespace Rentfy.Application.Services
 
         public async Task<Result<ProductViewModel>> UpdateProduct(ProductDto productDto)
         {
-            var productUpdate = new Product(productDto.Name, productDto.Description, productDto.Amount, productDto.HourValue, productDto.CategoryId);
+            var productUpdate = new Product(productDto.Name, productDto.Description, productDto.Amount, productDto.HourValue,
+                productDto.CategoryId, productDto.StoreId);
 
             var personResult = await _productService.Update(productDto.Id, productUpdate);
 
