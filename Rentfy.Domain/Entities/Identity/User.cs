@@ -8,6 +8,7 @@ namespace Rentfy.Domain.Entities.Identity
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public List<UserRole> UserRoles { get; private set; }
+        public ICollection<Rent> Rents { get; private set; }
 
         public User() { }
 

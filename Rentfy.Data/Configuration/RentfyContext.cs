@@ -55,6 +55,7 @@ namespace Rentfy.Data.Configuration
             modelBuilder.ApplyConfiguration(new RentProductMapping());
             modelBuilder.ApplyConfiguration(new StoreMapping());
             modelBuilder.ApplyConfiguration(new RentStatusEnumerationMapping());
+            modelBuilder.ApplyConfiguration(new RentMapping());
 
             base.OnModelCreating(modelBuilder);
         }

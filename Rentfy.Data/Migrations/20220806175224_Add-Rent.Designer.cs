@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rentfy.Data.Configuration;
 
 namespace Rentfy.Data.Migrations
 {
     [DbContext(typeof(RentfyContext))]
-    partial class RentfyContextModelSnapshot : ModelSnapshot
+    [Migration("20220806175224_Add-Rent")]
+    partial class AddRent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

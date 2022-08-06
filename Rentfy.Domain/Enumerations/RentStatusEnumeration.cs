@@ -12,5 +12,6 @@ namespace Rentfy.Domain.Enumerations
         public static RentStatusEnumeration Pending = new RentStatusEnumeration(2, "Pending");
         public static RentStatusEnumeration Canceled = new RentStatusEnumeration(3, "Canceled");
         public static RentStatusEnumeration Closed = new RentStatusEnumeration(4, "Closed");
+        public static RentStatusEnumeration Approved = new RentStatusEnumeration(5, "Approved");
     }
 }

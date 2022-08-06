@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Rentfy.Domain.Entities
 {
@@ -8,6 +9,7 @@ namespace Rentfy.Domain.Entities
         public ProductCollection Products { get; private set; }
         public LegalPerson LegalPerson { get; private set; }
         public long LegalPersonId { get; private set; }
+        public ICollection<Rent> Rents { get; private set; }
 
         public Store() { }
 
