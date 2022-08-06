@@ -22,6 +22,7 @@ namespace Rentfy.Data.Configuration
         public DbSet<LegalPerson> LegalPeople { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<RentProduct> RentProducts { get; set; }
         public DbSet<Store> Stores { get; set; }
 
 
@@ -51,6 +52,7 @@ namespace Rentfy.Data.Configuration
 
             modelBuilder.ApplyConfiguration(new ProductCategoryMapping());
             modelBuilder.ApplyConfiguration(new ProductMapping());
+            modelBuilder.ApplyConfiguration(new RentProductMapping());
             modelBuilder.ApplyConfiguration(new StoreMapping());
 
             base.OnModelCreating(modelBuilder);
