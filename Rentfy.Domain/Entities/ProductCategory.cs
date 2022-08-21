@@ -4,6 +4,7 @@
     {
         public long Id { get; private set; }
         public string Name { get; private set; }
+        // TODO: Adicionar store
 
         public ProductCategory() { }
 
