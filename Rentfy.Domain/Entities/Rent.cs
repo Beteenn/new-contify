@@ -1,6 +1,7 @@
 ﻿using Rentfy.Domain.Entities.Identity;
 using Rentfy.Domain.Enumerations;
 using System;
+using System.Collections.Generic;
 
 namespace Rentfy.Domain.Entities
 {
@@ -18,6 +19,7 @@ namespace Rentfy.Domain.Entities
         public long TotalValue { get; private set; }
         public int StatusId { get; private set; }
         public RentStatusEnumeration Status { get; private set; }
+        public ICollection<ProductRentProduct> Products { get; private set; }
 
         public Rent() { }
 
