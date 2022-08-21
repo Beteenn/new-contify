@@ -9,5 +9,6 @@ namespace Rentfy.Application.Interfaces
     {
         Task<Result<RentViewModel>> GetRentById(long id);
         Task<Result<RentViewModel>> CreateRent(RentDto rentDto);
+        Task<Result> CancelRent(long rentId);
     }
 }

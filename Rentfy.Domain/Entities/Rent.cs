@@ -50,7 +50,7 @@ namespace Rentfy.Domain.Entities
 
         public void Cancel()
         {
-            Status = RentStatusEnumeration.Canceled;
+            StatusId = RentStatusEnumeration.Canceled.Id;
             CancellationDate = DateTime.Now;
         }
     }

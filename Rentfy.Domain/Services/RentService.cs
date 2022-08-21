@@ -31,5 +31,18 @@ namespace Rentfy.Domain.Services
             return new DomainResult<Rent>(rent);
         }
 
+        public async Task<DomainResult> CancelRent(long rentId)
+        {
+            var rent = await _rentRepository.GetById(rentId);
+
+            if (rent == null) return new DomainResult().AddErrorMessage("Alugel não encontrado.");
+
+            rent.Cancel();
+
+            await _rentRepository.Update(rent);
+            await _rentRepository.UnitOfWork.CommitAsync();
+
+            return new DomainResult();
+        }
     }
 }

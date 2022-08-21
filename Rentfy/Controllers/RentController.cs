@@ -32,9 +32,19 @@ namespace Rentfy.Api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateStore(RentDto rentDto)
+        public async Task<IActionResult> CreateRent(RentDto rentDto)
         {
             var result = await _rentAppService.CreateRent(rentDto);
+
+            return ResultRequest(result);
+        }
+
+        [HttpPatch("cancel/{rentId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CancelRent(long rentId)
+        {
+            var result = await _rentAppService.CancelRent(rentId);
 
             return ResultRequest(result);
         }

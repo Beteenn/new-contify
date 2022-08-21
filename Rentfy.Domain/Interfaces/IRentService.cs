@@ -8,5 +8,6 @@ namespace Rentfy.Domain.Interfaces
     {
         Task<DomainResult<Rent>> GetById(long id);
         Task<DomainResult<Rent>> Create(Rent rent);
+        Task<DomainResult> CancelRent(long rentId);
     }
 }

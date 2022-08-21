@@ -23,5 +23,10 @@ namespace Rentfy.Data.Repositories
         {
             await _context.AddAsync(rent);
         }
+
+        public async Task Update(Rent rent)
+        {
+            await Task.Run(() => _context.Rents.Update(rent));
+        }
     }
 }
