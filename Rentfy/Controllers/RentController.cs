@@ -48,5 +48,15 @@ namespace Rentfy.Api.Controllers
 
             return ResultRequest(result);
         }
+
+        [HttpPatch("start/{rentId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> StartRent(long rentId)
+        {
+            var result = await _rentAppService.StartRent(rentId);
+
+            return ResultRequest(result);
+        }
     }
 }

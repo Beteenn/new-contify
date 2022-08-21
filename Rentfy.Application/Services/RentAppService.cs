@@ -41,5 +41,12 @@ namespace Rentfy.Application.Services
 
             return Mapper.Map<Result>(updateResult);
         }
+
+        public async Task<Result> StartRent(long rentId)
+        {
+            var updateResult = await _rentService.StartRent(rentId);
+
+            return Mapper.Map<Result>(updateResult);
+        }
     }
 }

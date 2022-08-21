@@ -44,9 +44,9 @@ namespace Rentfy.Domain.Entities
             StatusId = RentStatusEnumeration.Pending.Id;
         }
 
-        public void Start() => Status = RentStatusEnumeration.Active;
+        public void Start() => StatusId = RentStatusEnumeration.Active.Id;
 
-        public void Accept() => Status = RentStatusEnumeration.Approved;
+        public void Accept() => StatusId = RentStatusEnumeration.Approved.Id;
 
         public void Cancel()
         {

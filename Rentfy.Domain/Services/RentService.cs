@@ -1,4 +1,5 @@
 ﻿using Rentfy.Domain.Entities;
+using Rentfy.Domain.Enumerations;
 using Rentfy.Domain.Interfaces;
 using Rentfy.Domain.InterfacesRepository;
 using Rentfy.Domain.SeedWork;
@@ -38,6 +39,22 @@ namespace Rentfy.Domain.Services
             if (rent == null) return new DomainResult().AddErrorMessage("Alugel não encontrado.");
 
             rent.Cancel();
+
+            await _rentRepository.Update(rent);
+            await _rentRepository.UnitOfWork.CommitAsync();
+
+            return new DomainResult();
+        }
+
+        public async Task<DomainResult> StartRent(long rentId)
+        {
+            var rent = await _rentRepository.GetById(rentId);
+
+            if (rent == null) return new DomainResult().AddErrorMessage("Alugel não encontrado.");
+
+            if (rent.StatusId == RentStatusEnumeration.Canceled.Id) return new DomainResult().AddErrorMessage("Alugel cancelado.");
+
+            rent.Start();
 
             await _rentRepository.Update(rent);
             await _rentRepository.UnitOfWork.CommitAsync();
