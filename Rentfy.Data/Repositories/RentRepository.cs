@@ -28,5 +28,10 @@ namespace Rentfy.Data.Repositories
         {
             await Task.Run(() => _context.Rents.Update(rent));
         }
+
+        public async Task Delete(Rent rent)
+        {
+            await Task.Run(() => _context.Rents.Remove(rent));
+        }
     }
 }

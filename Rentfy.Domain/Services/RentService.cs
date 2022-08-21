@@ -61,5 +61,17 @@ namespace Rentfy.Domain.Services
 
             return new DomainResult();
         }
+
+        public async Task<DomainResult> DeleteById(long id)
+        {
+            var rent = await _rentRepository.GetById(id);
+
+            if (rent == null) return new DomainResult().AddErrorMessage("Aluguel não encontrado.");
+
+            await _rentRepository.Delete(rent);
+            await _rentRepository.UnitOfWork.CommitAsync();
+
+            return new DomainResult();
+        }
     }
 }

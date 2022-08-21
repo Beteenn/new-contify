@@ -58,5 +58,15 @@ namespace Rentfy.Api.Controllers
 
             return ResultRequest(result);
         }
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteRent(long id)
+        {
+            var result = await _rentAppService.DeleteRentById(id);
+
+            return ResultRequest(result);
+        }
     }
 }

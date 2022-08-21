@@ -10,5 +10,6 @@ namespace Rentfy.Domain.Interfaces
         Task<DomainResult<Rent>> Create(Rent rent);
         Task<DomainResult> CancelRent(long rentId);
         Task<DomainResult> StartRent(long rentId);
+        Task<DomainResult> DeleteById(long id);
     }
 }

@@ -48,5 +48,12 @@ namespace Rentfy.Application.Services
 
             return Mapper.Map<Result>(updateResult);
         }
+
+        public async Task<Result> DeleteRentById(long id)
+        {
+            var result = await _rentService.DeleteById(id);
+
+            return Mapper.Map<Result>(result);
+        }
     }
 }
