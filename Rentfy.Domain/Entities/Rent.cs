@@ -14,7 +14,7 @@ namespace Rentfy.Domain.Entities
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
         public DateTime ReservationDate { get; private set; }
-        public DateTime CancellationDate { get; private set; }
+        public DateTime? CancellationDate { get; private set; }
         public long TotalValue { get; private set; }
         public int StatusId { get; private set; }
         public RentStatusEnumeration Status { get; private set; }
@@ -29,7 +29,7 @@ namespace Rentfy.Domain.Entities
             StartDate = startDate;
             EndDate = endDate;
             ReservationDate = DateTime.Now;
-            Status = RentStatusEnumeration.Pending;
+            StatusId = RentStatusEnumeration.Pending.Id;
         }
 
         public Rent(long clientId, long storeId, DateTime startDate, DateTime endDate)
@@ -39,7 +39,7 @@ namespace Rentfy.Domain.Entities
             StartDate = startDate;
             EndDate = endDate;
             ReservationDate = DateTime.Now;
-            Status = RentStatusEnumeration.Pending;
+            StatusId = RentStatusEnumeration.Pending.Id;
         }
 
         public void Start() => Status = RentStatusEnumeration.Active;
