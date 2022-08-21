@@ -3,6 +3,7 @@ using Rentfy.Application.SeedWork;
 using Rentfy.Application.ViewModels;
 using Rentfy.Domain.Entities;
 using Rentfy.Domain.Entities.Identity;
+using Rentfy.Domain.Enumerations;
 using Rentfy.Domain.SeedWork;
 
 namespace Rentfy.Application.Mapper
@@ -42,7 +43,12 @@ namespace Rentfy.Application.Mapper
 
             CreateMap<Store, StoreViewModel>()
                 .ReverseMap();
-        }
 
+            CreateMap<Rent, RentViewModel>()
+                .ReverseMap();
+
+            CreateMap<RentStatusEnumeration, EnumViewModel>()
+                .ReverseMap();
+        }
     }
 }
